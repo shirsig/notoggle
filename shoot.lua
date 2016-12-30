@@ -11,6 +11,7 @@ SLASH_SHOOT1 = '/shoot'
 function SlashCmdList.SHOOT(command)
 	if not shooting then
 		CastSpellByName'Auto Shot'
+		CastSpellByName'Shoot'
 	end
 end
 
