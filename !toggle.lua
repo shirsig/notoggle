@@ -40,13 +40,13 @@ do
 end
 
 do
+	local tt = CreateFrame('GameTooltip', '!toggle_tt', nil, 'GameTooltipTemplate')
 	local orig = UseAction
 	function UseAction(slot, clicked, onself)
 		if HasAction(slot) and not GetActionText(slot) then
-			aurae_Tooltip:SetOwner(UIParent, 'ANCHOR_NONE')
-			aurae_TooltipTextRight1:SetText()
-			aurae_Tooltip:SetAction(slot)
-			if ignore(aurae_TooltipTextLeft1:GetText()) then return end
+			tt:SetOwner(UIParent, 'ANCHOR_NONE')
+			tt:SetAction(slot)
+			if ignore(getglobal('!toggle_ttTextLeft1'):GetText()) then return end
 		end
 		return orig(slot, clicked, onself)
 	end
