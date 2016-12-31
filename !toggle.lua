@@ -19,7 +19,7 @@ do
 end
 
 local function ignore(name)
-	local name = strlower(name)
+	name = strlower(name)
 	return name == 'attack' and attacking or (name == 'auto shot' or name =='shoot') and shooting
 end
 
