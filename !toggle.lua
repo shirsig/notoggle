@@ -33,9 +33,9 @@ end
 
 do
 	local orig = CastSpellByName
-	function CastSpellByName(name)
-		if ignore(name) then return end
-		return orig(name)
+	function CastSpellByName(text, onself)
+		if ignore(text) then return end
+		return orig(text, onself)
 	end
 end
 
