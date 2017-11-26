@@ -18,7 +18,7 @@ do
 	end)
 end
 
-local function ignore(name)
+local function active(name)
 	name = strlower(name)
 	return name == 'attack' and attacking or (name == 'auto shot' or name =='shoot') and shooting
 end
@@ -26,7 +26,7 @@ end
 do
 	local orig = CastSpell
 	function CastSpell(index, booktype)
-		if ignore(GetSpellName(index, booktype)) then return end
+		if active(GetSpellName(index, booktype)) then return end
 		return orig(index, booktype)
 	end
 end
@@ -34,7 +34,7 @@ end
 do
 	local orig = CastSpellByName
 	function CastSpellByName(text, onself)
-		if ignore(text) then return end
+		if active(text) then return end
 		return orig(text, onself)
 	end
 end
@@ -46,7 +46,7 @@ do
 		if HasAction(slot) and not GetActionText(slot) then
 			tt:SetOwner(UIParent, 'ANCHOR_NONE')
 			tt:SetAction(slot)
-			if ignore(getglobal('!toggle_ttTextLeft1'):GetText()) then return end
+			if active(getglobal('!toggle_ttTextLeft1'):GetText()) then return end
 		end
 		return orig(slot, clicked, onself)
 	end
