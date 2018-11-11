@@ -19,7 +19,7 @@ do
 end
 
 local function active(name)
-	name = strlower(name)
+	name = name and strlower(name)
 	return name == 'attack' and attacking or (name == 'auto shot' or name =='shoot') and shooting
 end
 
