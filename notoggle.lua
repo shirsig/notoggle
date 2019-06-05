@@ -4,7 +4,7 @@ do
 	local f = CreateFrame'Frame'
 	f:RegisterEvent'PLAYER_ENTER_COMBAT'
 	f:RegisterEvent'PLAYER_LEAVE_COMBAT'
-	f:SetScript('OnEvent', function()
+	f:SetScript('OnEvent', function(_, event)
 		attacking = event == 'PLAYER_ENTER_COMBAT'
 	end)
 end
@@ -13,7 +13,7 @@ do
 	local f = CreateFrame'Frame'
 	f:RegisterEvent'START_AUTOREPEAT_SPELL'
 	f:RegisterEvent'STOP_AUTOREPEAT_SPELL'
-	f:SetScript('OnEvent', function()
+	f:SetScript('OnEvent', function(_, event)
 		shooting = event == 'START_AUTOREPEAT_SPELL'
 	end)
 end
@@ -26,7 +26,7 @@ end
 do
 	local orig = CastSpell
 	function CastSpell(index, booktype)
-		if active(GetSpellName(index, booktype)) then return end
+		if active(GetSpellBookItemName(index, booktype)) then return end
 		return orig(index, booktype)
 	end
 end
